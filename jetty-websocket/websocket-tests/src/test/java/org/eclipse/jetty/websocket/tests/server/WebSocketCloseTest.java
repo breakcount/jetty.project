@@ -54,13 +54,11 @@ import org.eclipse.jetty.websocket.tests.UpgradeUtils;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * Tests various close scenarios
  */
-@Ignore("Need to fix")
 public class WebSocketCloseTest
 {
     /**
@@ -68,7 +66,7 @@ public class WebSocketCloseTest
      */
     public static class ContainerSocket extends WebSocketAdapter
     {
-        private static final Logger LOG = Log.getLogger(WebSocketCloseTest.ContainerSocket.class);
+        private static final Logger LOG = Log.getLogger(ContainerSocket.class);
         private final WebSocketServerFactory container;
         private Session session;
         
@@ -117,7 +115,7 @@ public class WebSocketCloseTest
      */
     public static class FastCloseSocket extends WebSocketAdapter
     {
-        private static final Logger LOG = Log.getLogger(WebSocketCloseTest.FastCloseSocket.class);
+        private static final Logger LOG = Log.getLogger(FastCloseSocket.class);
         
         @Override
         public void onWebSocketConnect(Session sess)
@@ -132,7 +130,7 @@ public class WebSocketCloseTest
      */
     public static class FastFailSocket extends WebSocketAdapter
     {
-        private static final Logger LOG = Log.getLogger(WebSocketCloseTest.FastFailSocket.class);
+        private static final Logger LOG = Log.getLogger(FastFailSocket.class);
         
         @Override
         public void onWebSocketConnect(Session sess)
