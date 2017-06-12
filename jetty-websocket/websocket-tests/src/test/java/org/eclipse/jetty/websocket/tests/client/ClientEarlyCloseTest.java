@@ -37,6 +37,7 @@ import org.eclipse.jetty.util.log.Logger;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.StatusCode;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
+import org.eclipse.jetty.websocket.api.WebSocketTimeoutException;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
@@ -279,8 +280,8 @@ public class ClientEarlyCloseTest
 
             session.getRemote().sendString("drop-me");
 
-            clientSocket.awaitCloseEvent("Client");
-            clientSocket.assertCloseInfo("Client", StatusCode.ABNORMAL, containsString("EOF"));
+            clientSocket.awaitErrorEvent("Client");
+            clientSocket.assertErrorEvent("Client", instanceOf(WebSocketTimeoutException.class), containsString("Connection Idle Timeout"));
         }
         finally
         {
